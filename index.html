@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- ▼▼▼ 카카오톡/SNS 공유 설정 (Open Graph) ▼▼▼ -->
+    <!-- ▼▼▼ [필수] 카카오톡/링크 공유 미리보기 설정 ▼▼▼ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="법무법인 여온 | 음주운전 구속 방어 전담">
-    <meta property="og:description" content="판사는 당신의 눈물이 아닌 기록을 봅니다. 3,000건 판례 기반 처벌 수위 예측하기">
-    <!-- 아래 주소는 예시 이미지입니다. 실제 변호사님 사진이나 로고가 있다면 해당 주소로 바꿔주세요. -->
+    <meta property="og:description" content="판사는 당신의 눈물이 아닌 기록을 봅니다. 3,000건 판례 데이터 기반, 내 사건 처벌 수위 즉시 확인하기.">
+    <!-- 썸네일 이미지 (실제 변호사님 사진이나 로고 이미지 주소로 변경해주세요) -->
     <meta property="og:image" content="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
-    <!-- 아래 주소는 실제 배포 후 생성된 사이트 주소(예: yeonlaw.com)로 바꿔주세요. -->
-    <meta property="og:url" content="https://jeonmyeongkyun-rgb.github.io/yeon-defense-system/">
-    <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ -->
-
+    <!-- 실제 배포된 사이트 도메인 (예: https://yeonlaw.com) -->
+    <meta property="og:url" content="https://jeonmyeongkyun-rgb.github.io/yeon-defense-system/"> 
+    <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ -->
+    
     <title>법무법인 여온 | 음주운전 구속 방어 전담</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -38,18 +38,16 @@
                     animation: {
                         'pulse-slow': 'pulse 3s infinite',
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'shake': 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both',
+                        'slide-down': 'slideDown 0.3s ease-out forwards',
                     },
                     keyframes: {
                         fadeInUp: {
                             '0%': { opacity: '0', transform: 'translateY(20px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
-                        shake: {
-                            '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
-                            '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
-                            '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
-                            '40%, 60%': { transform: 'translate3d(4px, 0, 0)' }
+                        slideDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)', height: '0' },
+                            '100%': { opacity: '1', transform: 'translateY(0)', height: 'auto' },
                         }
                     }
                 }
@@ -71,9 +69,8 @@
         }
 
         .glass-panel {
-            background: rgba(20, 20, 20, 0.8);
+            background: rgba(20, 20, 20, 0.9);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
@@ -81,12 +78,8 @@
             background: linear-gradient(to top, #050505 10%, rgba(5,5,5,0.9) 50%, rgba(5,5,5,0.7) 100%);
         }
 
-        /* 숫자 입력창 화살표 제거 */
         input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
-        }
+        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     </style>
 </head>
 <body class="antialiased">
@@ -107,7 +100,6 @@
 
     <!-- Hero Section -->
     <header class="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-6 pt-20">
-        <!-- Background Image (Lawyers Silhouette) -->
         <div class="absolute inset-0 z-0">
              <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="Yeon Defense Team" class="w-full h-full object-cover opacity-50 grayscale" style="object-position: center 20%;">
              <div class="hero-overlay absolute inset-0 z-10"></div>
@@ -115,7 +107,6 @@
 
         <div class="relative z-20 max-w-4xl mx-auto text-center">
             <div class="animate-fade-in-up">
-                <!-- Cognitive Dissonance Breaker Badge -->
                 <div class="inline-block mb-8">
                     <span class="py-2 px-4 rounded border border-alertRed/50 bg-alertRed/10 text-alertRed text-[11px] md:text-xs font-black tracking-wider uppercase backdrop-blur-md animate-pulse shadow-[0_0_15px_rgba(255,59,48,0.3)]">
                         [경고] "설마 실형이겠어?" 그 안일함이 당신을 구속시킵니다.
@@ -152,21 +143,19 @@
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">AI 처벌 수위 예측 시스템</h2>
                 <p class="text-gray-400 text-sm break-keep">
-                    당신의 상황을 입력하십시오. <span class="text-yeonGold font-bold">판결문 3,000건의 데이터</span>가 당신의 미래를 예측합니다.
+                    단순 수치뿐만 아니라, <span class="text-yeonGold font-bold">거리, 전과, 합의 여부</span>까지 종합 분석합니다.
                 </p>
             </div>
 
-            <!-- Input Form -->
             <div class="glass-panel p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
-                <!-- Subtle Grid Background inside form -->
                 <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTAgNDBMMTQwIDBoMXYxbC0xIDQwSDB6IiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiIHN0cm9rZS13aWR0aD0iMSIvPgo8L3N2Zz4=')] opacity-30"></div>
 
-                <form id="calcForm" class="space-y-10 relative z-10">
-                    <!-- 1. BAC (Updated for Direct Input) -->
+                <form id="calcForm" class="space-y-12 relative z-10">
+                    
+                    <!-- 1. BAC -->
                     <div>
                         <div class="flex justify-between mb-4 items-end">
-                            <label class="text-xs font-bold text-gray-400 uppercase tracking-widest">혈중알코올농도 (BAC)</label>
-                            <!-- Direct Input Area -->
+                            <label class="text-xs font-bold text-gray-400 uppercase tracking-widest">1. 혈중알코올농도 (BAC)</label>
                             <div class="flex items-center gap-2 border-b border-yeonGold/50 pb-1 focus-within:border-yeonGold transition">
                                 <input type="number" id="bacInput" step="0.001" min="0.000" max="0.400" value="0.030" 
                                     class="bg-transparent text-right text-3xl font-mono font-bold text-yeonGold w-32 focus:outline-none placeholder-yeonGold/30"
@@ -178,50 +167,128 @@
                         <div class="flex justify-between text-[10px] text-gray-600 mt-2 font-mono uppercase">
                             <span>정지(0.03)</span>
                             <span>취소(0.08)</span>
-                            <span class="text-alertRed font-bold">구속위험(0.20)</span>
+                            <span class="text-alertRed font-bold">구속(0.20)</span>
                         </div>
                     </div>
 
-                    <!-- 2. History -->
+                    <!-- 2. Distance (Separate Category) -->
                     <div>
-                        <label class="text-xs font-bold text-gray-400 mb-4 block uppercase tracking-widest">과거 전력 (본인 포함)</label>
+                        <label class="text-xs font-bold text-gray-400 mb-4 block uppercase tracking-widest">2. 적발까지의 운전 거리</label>
                         <div class="grid grid-cols-3 gap-3">
                             <label class="cursor-pointer group">
-                                <input type="radio" name="history" value="0" checked class="peer sr-only">
-                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-sm text-gray-400 peer-checked:border-yeonGold peer-checked:text-yeonGold peer-checked:bg-yeonGold/10 transition font-bold group-hover:bg-white/10">초범</div>
+                                <input type="radio" name="distance" value="short" class="peer sr-only">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-sm text-gray-400 peer-checked:border-green-500 peer-checked:text-green-500 peer-checked:bg-green-500/10 transition font-bold group-hover:bg-white/10">5km 이내</div>
                             </label>
                             <label class="cursor-pointer group">
-                                <input type="radio" name="history" value="1" class="peer sr-only">
-                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-sm text-gray-400 peer-checked:border-yeonGold peer-checked:text-yeonGold peer-checked:bg-yeonGold/10 transition font-bold group-hover:bg-white/10">재범 (2회)</div>
+                                <input type="radio" name="distance" value="long" checked class="peer sr-only">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-sm text-gray-400 peer-checked:border-yeonGold peer-checked:text-yeonGold peer-checked:bg-yeonGold/10 transition font-bold group-hover:bg-white/10">5km 이상</div>
                             </label>
                             <label class="cursor-pointer group">
-                                <input type="radio" name="history" value="2" class="peer sr-only">
-                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-sm text-gray-400 peer-checked:border-alertRed peer-checked:text-alertRed peer-checked:bg-alertRed/10 transition font-bold group-hover:bg-white/10">3회 이상</div>
+                                <input type="radio" name="distance" value="unknown" class="peer sr-only">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-sm text-gray-400 peer-checked:border-gray-500 peer-checked:text-gray-300 peer-checked:bg-white/10 transition font-bold group-hover:bg-white/10">모름</div>
                             </label>
                         </div>
                     </div>
 
-                    <!-- 3. Aggravating Factors (Separated) -->
+                    <!-- 3. DUI History (Penalty Type) -->
+                    <div class="space-y-4">
+                        <label class="text-xs font-bold text-gray-400 block uppercase tracking-widest">3. 음주운전 과거 전력 (본인 포함)</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <label class="cursor-pointer group">
+                                <input type="radio" name="history" value="0" checked class="peer sr-only" onchange="toggleHistoryDetail(false)">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-sm text-gray-400 peer-checked:border-green-500 peer-checked:text-green-500 peer-checked:bg-green-500/10 transition font-bold">초범</div>
+                            </label>
+                            <label class="cursor-pointer group">
+                                <input type="radio" name="history" value="1" class="peer sr-only" onchange="toggleHistoryDetail(true)">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-sm text-gray-400 peer-checked:border-yeonGold peer-checked:text-yeonGold peer-checked:bg-yeonGold/10 transition font-bold">재범 (2회)</div>
+                            </label>
+                            <label class="cursor-pointer group">
+                                <input type="radio" name="history" value="2" class="peer sr-only" onchange="toggleHistoryDetail(true)">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-sm text-gray-400 peer-checked:border-alertRed peer-checked:text-alertRed peer-checked:bg-alertRed/10 transition font-bold">3회 이상</div>
+                            </label>
+                        </div>
+
+                        <!-- Dynamic History Detail -->
+                        <div id="historyDetail" class="hidden pl-4 border-l-2 border-yeonGold space-y-4 animate-slide-down">
+                            <div>
+                                <p class="text-xs text-yeonGold mb-2 font-bold">Q. 직전 음주운전 처벌 종류는 무엇입니까?</p>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <label class="cursor-pointer"><input type="radio" name="prevPenalty" value="fine" class="peer sr-only"><div class="py-3 text-center border border-white/20 rounded-lg text-xs text-gray-400 peer-checked:bg-yeonGold peer-checked:text-black transition font-bold">벌금형</div></label>
+                                    <label class="cursor-pointer"><input type="radio" name="prevPenalty" value="suspended" class="peer sr-only"><div class="py-3 text-center border border-white/20 rounded-lg text-xs text-gray-400 peer-checked:bg-yeonGold peer-checked:text-black transition font-bold">집행유예</div></label>
+                                    <label class="cursor-pointer"><input type="radio" name="prevPenalty" value="prison" class="peer sr-only"><div class="py-3 text-center border border-white/20 rounded-lg text-xs text-gray-400 peer-checked:bg-yeonGold peer-checked:text-black transition font-bold">실형</div></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Other Criminal Record (Separate Category) -->
+                    <div>
+                        <label class="text-xs font-bold text-gray-400 mb-4 block uppercase tracking-widest">4. 다른 형사 처벌 전력 (이종 전과)</label>
+                        <div class="grid grid-cols-4 gap-2">
+                            <label class="cursor-pointer group">
+                                <input type="radio" name="otherPenalty" value="none" checked class="peer sr-only">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-xs md:text-sm text-gray-400 peer-checked:border-green-500 peer-checked:text-green-500 peer-checked:bg-green-500/10 transition font-bold group-hover:bg-white/10">없음</div>
+                            </label>
+                            <label class="cursor-pointer group">
+                                <input type="radio" name="otherPenalty" value="fine" class="peer sr-only">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-xs md:text-sm text-gray-400 peer-checked:border-gray-400 peer-checked:text-white peer-checked:bg-gray-700 transition font-bold group-hover:bg-white/10">벌금형</div>
+                            </label>
+                            <label class="cursor-pointer group">
+                                <input type="radio" name="otherPenalty" value="suspended" class="peer sr-only">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-xs md:text-sm text-gray-400 peer-checked:border-gray-400 peer-checked:text-white peer-checked:bg-gray-700 transition font-bold group-hover:bg-white/10">집행유예</div>
+                            </label>
+                            <label class="cursor-pointer group">
+                                <input type="radio" name="otherPenalty" value="prison" class="peer sr-only">
+                                <div class="py-4 text-center bg-white/5 border border-white/10 rounded-xl text-xs md:text-sm text-gray-400 peer-checked:border-gray-400 peer-checked:text-white peer-checked:bg-gray-700 transition font-bold group-hover:bg-white/10">실형</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 5. Aggravating Factors -->
                     <div class="bg-red-500/5 p-6 rounded-2xl border border-red-500/10">
                          <label class="text-xs font-bold text-alertRed mb-4 block uppercase tracking-widest flex items-center gap-2">
-                            <span class="text-base">⚠️</span> 가중 처벌 요소 (매우 중요)
+                            <span class="text-base">⚠️</span> 5. 가중 처벌 요소 (매우 중요)
                          </label>
-                         <div class="space-y-3">
-                            <!-- Simple Detection (Mutual Exclusive) -->
+                         <div class="space-y-4">
+                            <!-- Simple -->
                             <label class="flex items-center justify-between p-4 bg-darkBg border border-yeonGold/30 rounded-xl cursor-pointer hover:bg-white/5 transition group">
-                                <span class="text-sm text-yeonGold group-hover:text-white transition font-medium">단순 음주 적발 (특이사항 없음)</span>
+                                <span class="text-sm text-yeonGold group-hover:text-white transition font-medium">단순 음주 적발 (사고/거부/도주 없음)</span>
                                 <input type="checkbox" id="simple" class="w-5 h-5 accent-yeonGold rounded cursor-pointer" onchange="toggleAggravating('simple')">
                             </label>
 
+                            <!-- Accident Group -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-alertRed/50 transition group">
                                     <span class="text-sm text-gray-300 group-hover:text-white transition font-medium">대물 사고 (물피)</span>
-                                    <input type="checkbox" id="propDamage" class="aggravating w-5 h-5 accent-alertRed rounded cursor-pointer" onchange="toggleAggravating('agg')">
+                                    <input type="checkbox" id="propDamage" class="aggravating w-5 h-5 accent-alertRed rounded cursor-pointer" onchange="toggleAccidentUI()">
                                 </label>
                                 <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-alertRed/50 transition group">
                                     <span class="text-sm text-gray-300 group-hover:text-white transition font-medium">대인 사고 (인피)</span>
-                                    <input type="checkbox" id="humanInjury" class="aggravating w-5 h-5 accent-alertRed rounded cursor-pointer" onchange="toggleAggravating('agg')">
+                                    <input type="checkbox" id="humanInjury" class="aggravating w-5 h-5 accent-alertRed rounded cursor-pointer" onchange="toggleAccidentUI()">
                                 </label>
+                            </div>
+
+                            <!-- Settlement UI (Hidden by default) -->
+                            <div id="settlementUI" class="hidden bg-alertRed/10 border border-alertRed/30 p-4 rounded-xl animate-slide-down">
+                                <p class="text-xs text-alertRed font-bold mb-2">Q. 피해자 합의 진행 상황은 어떠합니까?</p>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="settlement" value="possible" class="peer sr-only">
+                                        <div class="py-3 text-center bg-darkBg border border-white/20 rounded-lg text-xs text-gray-300 peer-checked:border-green-500 peer-checked:text-green-500 font-bold transition">
+                                            가능 / 진행 중
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="settlement" value="impossible" class="peer sr-only">
+                                        <div class="py-3 text-center bg-darkBg border border-white/20 rounded-lg text-xs text-gray-300 peer-checked:border-alertRed peer-checked:text-alertRed font-bold transition">
+                                            불가능 / 모름
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Other Critical -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-alertRed/50 transition group">
                                     <span class="text-sm text-gray-300 group-hover:text-white transition font-medium">음주 측정 거부</span>
                                     <input type="checkbox" id="refusal" class="aggravating w-5 h-5 accent-alertRed rounded cursor-pointer" onchange="toggleAggravating('agg')">
@@ -234,36 +301,18 @@
                          </div>
                     </div>
 
-                    <!-- 4. Mitigating Factors (Expanded) -->
+                    <!-- 6. Mitigating Factors -->
                     <div class="bg-yeonGold/5 p-6 rounded-2xl border border-yeonGold/10">
                         <label class="text-xs font-bold text-yeonGold mb-4 block uppercase tracking-widest flex items-center gap-2">
-                           <span class="text-base">🛡️</span> 감경 가능 요소 (방어 전략)
+                           <span class="text-base">🛡️</span> 6. 감경 가능 요소 (방어 전략)
                         </label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group">
-                               <span class="text-sm text-gray-300 group-hover:text-white transition font-medium">가족 부양 (생계 곤란)</span>
-                               <input type="checkbox" id="family" class="w-5 h-5 accent-yeonGold rounded cursor-pointer">
-                           </label>
-                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group">
-                               <span class="text-sm text-gray-300 group-hover:text-white transition font-medium">차량 매각 완료</span>
-                               <input type="checkbox" id="vehicle" class="w-5 h-5 accent-yeonGold rounded cursor-pointer">
-                           </label>
-                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group">
-                               <span class="text-sm text-gray-300 group-hover:text-white transition font-medium">건강 악화 / 질병</span>
-                               <input type="checkbox" id="health" class="w-5 h-5 accent-yeonGold rounded cursor-pointer">
-                           </label>
-                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group">
-                               <span class="text-sm text-gray-300 group-hover:text-white transition font-medium">10년 이상 무사고</span>
-                               <input type="checkbox" id="record" class="w-5 h-5 accent-yeonGold rounded cursor-pointer">
-                           </label>
-                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group">
-                               <span class="text-sm text-gray-300 group-hover:text-white transition font-medium">알코올 치료 / 금주 클리닉</span>
-                               <input type="checkbox" id="alcohol" class="w-5 h-5 accent-yeonGold rounded cursor-pointer">
-                           </label>
-                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group">
-                               <span class="text-sm text-gray-300 group-hover:text-white transition font-medium">대리운전 호출 내역 (습관)</span>
-                               <input type="checkbox" id="driver" class="w-5 h-5 accent-yeonGold rounded cursor-pointer">
-                           </label>
+                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group"><span class="text-sm text-gray-300 group-hover:text-white transition font-medium">가족 부양 (생계 곤란)</span><input type="checkbox" id="family" class="w-5 h-5 accent-yeonGold rounded cursor-pointer"></label>
+                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group"><span class="text-sm text-gray-300 group-hover:text-white transition font-medium">차량 매각 완료</span><input type="checkbox" id="vehicle" class="w-5 h-5 accent-yeonGold rounded cursor-pointer"></label>
+                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group"><span class="text-sm text-gray-300 group-hover:text-white transition font-medium">건강 악화 / 질병</span><input type="checkbox" id="health" class="w-5 h-5 accent-yeonGold rounded cursor-pointer"></label>
+                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group"><span class="text-sm text-gray-300 group-hover:text-white transition font-medium">10년 이상 무사고</span><input type="checkbox" id="record" class="w-5 h-5 accent-yeonGold rounded cursor-pointer"></label>
+                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group"><span class="text-sm text-gray-300 group-hover:text-white transition font-medium">알코올 치료 / 금주 클리닉</span><input type="checkbox" id="alcohol" class="w-5 h-5 accent-yeonGold rounded cursor-pointer"></label>
+                           <label class="flex items-center justify-between p-4 bg-darkBg border border-white/10 rounded-xl cursor-pointer hover:border-yeonGold/50 transition group"><span class="text-sm text-gray-300 group-hover:text-white transition font-medium">대리운전 호출 내역 (습관)</span><input type="checkbox" id="driver" class="w-5 h-5 accent-yeonGold rounded cursor-pointer"></label>
                         </div>
                    </div>
 
@@ -276,26 +325,25 @@
                     </div>
                 </form>
 
-                <!-- Loading Spinner (Hidden by Default) -->
+                <!-- Loading Spinner -->
                 <div id="loading" class="hidden text-center py-20">
                     <div class="inline-block w-16 h-16 border-4 border-white/10 border-t-yeonGold rounded-full animate-spin mb-6"></div>
                     <div class="space-y-2">
                         <p class="text-yeonGold font-mono text-sm tracking-widest animate-pulse">ANALYZING 3,240 CASES...</p>
-                        <p class="text-gray-500 text-xs" id="loadingText">판결문 대조 중...</p>
+                        <p class="text-gray-500 text-xs" id="loadingText">가중 처벌 요소 정밀 분석 중...</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Result Section (Hidden Initially) -->
+    <!-- Result Section -->
     <section id="resultSection" class="hidden py-24 bg-panelBg relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yeonGold to-transparent opacity-50"></div>
         <div class="absolute -top-40 -right-40 w-96 h-96 bg-yeonGold/5 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto px-6 relative z-10">
             
-            <!-- Result Header -->
             <div class="text-center mb-12 animate-fade-in-up">
                 <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] mb-4">ANALYSIS COMPLETE</p>
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-2" id="resultTitle">단순 음주 적발 (면허정지 수치)</h2>
@@ -304,7 +352,6 @@
 
             <!-- Result Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 animate-fade-in-up" style="animation-delay: 0.2s;">
-                
                 <!-- Data Card -->
                 <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-dataBlue">
                     <div class="flex items-center gap-2 mb-4">
@@ -312,10 +359,9 @@
                         <h4 class="text-dataBlue font-bold text-sm uppercase tracking-wide">유사 사건 판결 데이터</h4>
                     </div>
                     <p id="resultSim" class="text-gray-300 text-sm leading-relaxed text-justify break-keep">
-                        혈중알코올농도 0.03%~0.08% 구간의 초범 사례입니다. 일반적으로 벌금형 약식명령이 내려지나, 최근 무관용 원칙으로 벌금 액수가 상향되고 있습니다.
+                        <!-- JS injected -->
                     </p>
                 </div>
-
                 <!-- Worst Case Card -->
                 <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-alertRed">
                     <div class="flex items-center gap-2 mb-4">
@@ -323,13 +369,13 @@
                         <h4 class="text-alertRed font-bold text-sm uppercase tracking-wide">일반적인 판결 (방어 실패 시)</h4>
                     </div>
                     <p id="resultWorst" class="text-white font-bold text-xl mb-2">
-                        벌금 500만원 내외
+                        <!-- JS injected -->
                     </p>
                     <p class="text-xs text-red-400 font-medium" id="resultAdmin">* 행정처분: 면허 정지 100일</p>
                 </div>
             </div>
 
-            <!-- Solution Card (Yeon's Strategy) -->
+            <!-- Solution Card -->
             <div class="glass-panel rounded-2xl border border-yeonGold/30 relative overflow-hidden mb-12 animate-fade-in-up" style="animation-delay: 0.4s;">
                 <div class="absolute inset-0 bg-yeonGold/5"></div>
                 
@@ -366,19 +412,18 @@
                 </div>
             </div>
 
-            <!-- Conversion Action (The 110,000 KRW Hook) -->
+            <!-- Conversion Action -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fade-in-up" style="animation-delay: 0.6s;">
-                <!-- Option 1: Free Generic -->
                 <div class="space-y-3">
                     <a href="tel:1588-0000" class="block w-full bg-white text-black font-bold py-4 rounded-xl text-center hover:bg-gray-200 transition">
                         📞 무료 전화 상담 (대기 발생)
                     </a>
+                    <!-- 카카오톡 링크 수정 필요 -->
                     <a href="#" class="block w-full bg-[#FAE100] text-black font-bold py-4 rounded-xl text-center hover:bg-[#ebd300] transition">
                         💬 카카오톡 채팅 상담
                     </a>
                 </div>
 
-                <!-- Option 2: Paid VIP (High Value) -->
                 <div class="relative group">
                     <div class="absolute -inset-0.5 bg-gradient-to-r from-yeonGold to-yellow-600 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-200 animate-pulse"></div>
                     <button onclick="alert('상담 예약 및 결제 페이지로 이동합니다.')" class="relative w-full h-full bg-black border border-yeonGold/50 rounded-xl p-4 flex flex-col items-center justify-center hover:bg-gray-900 transition cursor-pointer">
@@ -411,48 +456,58 @@
     </footer>
 
     <script>
-        // Sync Logic for BAC Input & Slider
+        // Sync Logic for BAC
         function syncBac(source) {
             const numberInput = document.getElementById('bacInput');
             const sliderInput = document.getElementById('bacSlider');
             let value = 0.030;
+            if (source === 'number') { value = parseFloat(numberInput.value); if (value > 0.4) value = 0.4; sliderInput.value = value; } 
+            else { value = parseFloat(sliderInput.value); numberInput.value = value.toFixed(3); }
+        }
 
-            if (source === 'number') {
-                value = parseFloat(numberInput.value);
-                if (value > 0.4) value = 0.4; // Safety Cap
-                sliderInput.value = value;
+        // UI Toggles
+        function toggleHistoryDetail(show) {
+            const el = document.getElementById('historyDetail');
+            if(show) el.classList.remove('hidden');
+            else el.classList.add('hidden');
+        }
+
+        function toggleAccidentUI() {
+            const prop = document.getElementById('propDamage').checked;
+            const human = document.getElementById('humanInjury').checked;
+            const ui = document.getElementById('settlementUI');
+            const simple = document.getElementById('simple');
+            
+            if(prop || human) {
+                ui.classList.remove('hidden');
+                simple.checked = false;
             } else {
-                value = parseFloat(sliderInput.value);
-                numberInput.value = value.toFixed(3);
+                ui.classList.add('hidden');
             }
         }
 
-        // Checkbox Logic: Mutually Exclusive
         function toggleAggravating(type) {
             const simple = document.getElementById('simple');
             const aggravators = document.querySelectorAll('.aggravating');
-
             if (type === 'simple') {
                 if (simple.checked) {
-                    // If simple is checked, uncheck all others
                     aggravators.forEach(cb => cb.checked = false);
+                    document.getElementById('settlementUI').classList.add('hidden');
                 }
             } else {
-                // If any aggravator is checked, uncheck simple
                 let anyChecked = false;
-                aggravators.forEach(cb => {
-                    if (cb.checked) anyChecked = true;
-                });
+                aggravators.forEach(cb => { if (cb.checked) anyChecked = true; });
                 if (anyChecked) {
                     simple.checked = false;
                 }
+                toggleAccidentUI(); 
             }
         }
 
-        // Database
+        // Logic & Data
         const DATA = {
-            'L1': {
-                title: "단순 음주 적발 (면허정지 수치)",
+            'L1': { // Simple
+                title: "단순 음주 적발 (초범)",
                 code: "CODE: DUI-L1-SIMPLE",
                 sim: "혈중알코올농도 0.03%~0.08% 구간의 초범 사례입니다. 일반적으로 벌금형 약식명령이 내려지나, 최근 무관용 원칙으로 벌금 액수가 상향되고 있습니다.",
                 worst: "벌금 500만원 내외",
@@ -466,12 +521,13 @@
                 successCase: {
                     title: "매칭 사례: 0.045% 적발 회사원 김OO님",
                     desc: "승진 앞두고 전과 기록 남을까 봐 의뢰 → 위드마크 공식 적용하여 무혐의 처분 성공"
-                }
+                },
+                best: "기소유예 (불기소)"
             },
-            'L2': {
-                title: "고위험 음주운전 (재범/취소수치)",
+            'L2': { // High Risk
+                title: "고위험군 (재범/만취/이종전과)",
                 code: "CODE: DUI-L2-HIGH_RISK",
-                sim: "혈중알코올농도가 0.08% 이상이거나 재범인 경우, 검찰은 '습관성 음주'로 판단하여 정식 재판에 회부할 가능성이 높습니다.",
+                sim: "혈중알코올농도 0.08% 이상, 재범, 또는 이종 전과가 있는 경우입니다. 검찰은 이를 '습관성 범죄'로 판단하여 정식 재판에 회부할 가능성이 매우 높습니다.",
                 worst: "징역 1년~2년 (집행유예 가능성)",
                 worstSub: "* 행정처분: 면허 취소 (결격 2년)",
                 strategySteps: [
@@ -483,12 +539,13 @@
                 successCase: {
                     title: "매칭 사례: 음주 2회차, 0.11% 자영업자 이OO님",
                     desc: "집행유예 위기에서 벌금형 선처 + 면허 구제(110일 정지) 동시 성공"
-                }
+                },
+                best: "벌금형 방어 (실형 면제)"
             },
-            'L3': {
+            'L3': { // Critical
                 title: "특가법 적용 (구속 위기)",
                 code: "CODE: DUI-L3-CRITICAL",
-                sim: "3회 이상, 인사사고, 측정 거부 등은 죄질 불량으로 분류됩니다. 합의나 특별 감경 사유가 없다면 실형(법정 구속)이 선고되는 추세입니다.",
+                sim: "3회 이상, 인사사고(미합의), 측정 거부, 동종 실형/집유 전력 등은 '죄질 불량'으로 분류됩니다. 실형(법정 구속) 확률이 매우 높은 비상 상황입니다.",
                 worst: "징역 1년 6월 이상 (법정 구속)",
                 worstSub: "* 즉시 구속 수감 위험",
                 strategySteps: [
@@ -500,80 +557,81 @@
                 successCase: {
                     title: "매칭 사례: 뺑소니 혐의, 피해자 전치 3주 박OO님",
                     desc: "검찰 징역 2년 구형 → 도주 고의성 부정 입증하여 집행유예 선고 (구속 면함)"
-                }
+                },
+                best: "집행유예 (구속 방어)"
             }
         };
 
         function runAnalysis() {
             // 1. Loading UI
-            const form = document.getElementById('calcForm');
-            const btn = document.getElementById('analyzeBtn');
-            const loading = document.getElementById('loading');
-            const loadingText = document.getElementById('loadingText');
-            
-            form.classList.add('opacity-50', 'pointer-events-none');
-            btn.classList.add('hidden');
-            loading.classList.remove('hidden');
+            document.getElementById('calcForm').classList.add('opacity-50', 'pointer-events-none');
+            document.getElementById('analyzeBtn').classList.add('hidden');
+            document.getElementById('loading').classList.remove('hidden');
 
-            // 2. Logic Determination
-            const bacInput = document.getElementById('bacInput'); // Use direct input
-            const bac = parseFloat(bacInput.value);
+            // 2. Logic Vars
+            const bac = parseFloat(document.getElementById('bacInput').value);
             const history = parseInt(document.querySelector('input[name="history"]:checked').value);
             
-            // Check aggravating inputs
+            // History Details (Prev DUI)
+            let prevPenalty = null;
+            if(history > 0) {
+                const checkedPrev = document.querySelector('input[name="prevPenalty"]:checked');
+                if(checkedPrev) prevPenalty = checkedPrev.value;
+            }
+            
+            // Other Record
+            const otherRecordVal = document.querySelector('input[name="otherPenalty"]:checked').value;
+
+            // Aggravating
             const propDamage = document.getElementById('propDamage').checked;
             const humanInjury = document.getElementById('humanInjury').checked;
             const refusal = document.getElementById('refusal').checked;
             const hitrun = document.getElementById('hitrun').checked;
-            const simple = document.getElementById('simple').checked;
+            
+            // Settlement
+            let settlement = 'unknown';
+            if(propDamage || humanInjury) {
+                const st = document.querySelector('input[name="settlement"]:checked');
+                if(st) settlement = st.value;
+            }
 
-            // Mitigation Check (Updated with new fields)
-            const family = document.getElementById('family').checked;
-            const vehicle = document.getElementById('vehicle').checked;
-            const health = document.getElementById('health').checked;
-            const record = document.getElementById('record').checked;
-            const alcohol = document.getElementById('alcohol').checked;
-            const driver = document.getElementById('driver').checked;
-
-            let mitigationCount = 0;
-            if(family) mitigationCount++;
-            if(vehicle) mitigationCount++;
-            if(health) mitigationCount++;
-            if(record) mitigationCount++;
-            if(alcohol) mitigationCount++;
-            if(driver) mitigationCount++;
-
-            // Algorithm
+            // Calculation Logic
             let type = 'L1';
             
-            if (hitrun || refusal || humanInjury) {
-                type = 'L3'; // Critical factors
-            } else if (propDamage || history >= 2 || bac >= 0.2) {
-                // High risk factors
+            // Critical Risk Conditions
+            if (hitrun || refusal || (settlement === 'impossible') || 
+                prevPenalty === 'prison' || prevPenalty === 'suspended' || 
+                otherRecordVal === 'prison' || otherRecordVal === 'suspended') {
+                type = 'L3';
+            } 
+            // High Risk Conditions
+            else if (humanInjury || history >= 2 || bac >= 0.2 || 
+                     prevPenalty === 'fine' || otherRecordVal === 'fine') {
+                type = 'L2';
+            } 
+            // Moderate Risk Conditions
+            else if (propDamage || history === 1 || bac >= 0.08) {
                 type = (type === 'L3') ? 'L3' : 'L2'; 
-            } else if (history === 1 || bac >= 0.08) {
-                // Moderate risk factors
-                type = (type === 'L3' || type === 'L2') ? type : 'L2';
-            } else {
-                // If simple is checked or no other aggravating factors + low BAC + 1st offense
+            } 
+            else {
                 type = 'L1';
             }
 
-            // 3. Update DOM
+            // 3. Update UI
             const d = DATA[type];
             document.getElementById('resultTitle').innerText = d.title;
             document.getElementById('resultCode').innerText = d.code;
             document.getElementById('resultSim').innerText = d.sim;
             document.getElementById('resultWorst').innerText = d.worst;
             document.getElementById('resultAdmin').innerText = d.worstSub;
+            document.getElementById('resultBest').innerText = d.best;
 
+            // Strategy Injection
             const strategyContainer = document.getElementById('strategySteps');
             strategyContainer.innerHTML = d.strategySteps.map((step, index) => `
                 <div class="flex gap-4">
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full bg-yeonGold text-black font-bold flex items-center justify-center text-sm shrink-0">
-                            ${index + 1}
-                        </div>
+                        <div class="w-8 h-8 rounded-full bg-yeonGold text-black font-bold flex items-center justify-center text-sm shrink-0">${index + 1}</div>
                         ${index < d.strategySteps.length - 1 ? '<div class="w-0.5 h-full bg-white/10 my-2"></div>' : ''}
                     </div>
                     <div class="pb-6">
@@ -586,15 +644,16 @@
             document.getElementById('successTitle').innerText = d.successCase.title;
             document.getElementById('successDesc').innerText = d.successCase.desc;
 
-            // Style Update based on Risk
+            // Color Coding
             const titleEl = document.getElementById('resultTitle');
             if(type === 'L3') titleEl.className = "text-3xl md:text-4xl font-bold text-alertRed mb-2 animate-pulse";
             else if(type === 'L2') titleEl.className = "text-3xl md:text-4xl font-bold text-orange-500 mb-2";
             else titleEl.className = "text-3xl md:text-4xl font-bold text-white mb-2";
 
-            // 4. Reveal Simulation
-            let steps = ["가중 처벌 요소 확인 중...", "재범 위험성 평가 중...", "유사 판례 3,240건 대조 중...", "최종 솔루션 도출 완료"];
+            // Reveal
+            let steps = ["과거 전력 및 처벌 수위 조회...", "이동 거리 및 사고 합의 여부 분석...", "유사 판례 3,240건 대조 중...", "최종 솔루션 도출 완료"];
             let stepIndex = 0;
+            const loadingText = document.getElementById('loadingText');
             
             let interval = setInterval(() => {
                 if(stepIndex < steps.length) {
@@ -602,7 +661,7 @@
                     stepIndex++;
                 } else {
                     clearInterval(interval);
-                    loading.classList.add('hidden');
+                    document.getElementById('loading').classList.add('hidden');
                     document.getElementById('resultSection').classList.remove('hidden');
                     document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
                 }

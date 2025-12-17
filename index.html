@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- Open Graph Setting -->
+    <!-- ▼▼▼ [필수] 카카오톡/링크 공유 미리보기 설정 ▼▼▼ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="법무법인 여온 | 음주운전 처벌 수위 정밀 진단">
     <meta property="og:description" content="판사는 당신의 눈물이 아닌 기록을 봅니다. 3,000건 판례 데이터 기반, 내 사건 처벌 수위 즉시 확인하기.">
+    <!-- 썸네일 이미지 (실제 변호사님 사진이나 로고 이미지 주소로 변경해주세요) -->
     <meta property="og:image" content="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
-    <meta property="og:url" content="https://jeonmyeongkyun-rgb.github.io/yeon-defense-system/"> 
+    <!-- 실제 배포된 사이트 도메인 (예: https://yeonlaw.com) -->
+    <meta property="og:url" content="https://yeonlaw.netlify.app"> 
+    <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ -->
     
     <title>법무법인 여온 | 음주운전 구속 방어 전담</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -190,7 +193,7 @@
                         </div>
                     </div>
 
-                    <!-- 3. History (Penalty Type) -->
+                    <!-- 3. History -->
                     <div class="space-y-4">
                         <label class="text-xs font-bold text-gray-400 block uppercase tracking-widest">3. 음주운전 과거 전력 (본인 포함)</label>
                         <div class="grid grid-cols-3 gap-3">
@@ -244,7 +247,7 @@
                         </div>
                     </div>
 
-                    <!-- 5. Aggravating Factors (Dynamic Settlement UI) -->
+                    <!-- 5. Aggravating Factors (FIXED) -->
                     <div class="bg-red-500/5 p-6 rounded-2xl border border-red-500/10">
                          <label class="text-xs font-bold text-alertRed mb-4 block uppercase tracking-widest flex items-center gap-2">
                             <span class="text-base">⚠️</span> 5. 가중 처벌 요소 (매우 중요)
@@ -256,8 +259,9 @@
                                 <input type="checkbox" id="simple" class="w-5 h-5 accent-yeonGold rounded cursor-pointer" onchange="toggleAggravating('simple')">
                             </label>
 
+                            <!-- Accident Group -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <!-- Prop Damage Box -->
+                                <!-- Prop Damage -->
                                 <div class="flex flex-col bg-darkBg border border-white/10 rounded-xl overflow-hidden">
                                     <label class="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5 transition border-b border-white/5">
                                         <span class="text-sm text-gray-300 font-medium">대물 사고 (물피)</span>
@@ -273,7 +277,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Human Injury Box -->
+                                <!-- Human Injury -->
                                 <div class="flex flex-col bg-darkBg border border-white/10 rounded-xl overflow-hidden">
                                     <label class="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5 transition border-b border-white/5">
                                         <span class="text-sm text-gray-300 font-medium">대인 사고 (인피)</span>
@@ -418,7 +422,7 @@
                     <a href="tel:1588-0000" class="block w-full bg-white text-black font-bold py-4 rounded-xl text-center hover:bg-gray-200 transition">
                         📞 무료 전화 상담 (대기 발생)
                     </a>
-                    <!-- 카카오톡 링크 수정 필요 -->
+                    <!-- 카카오톡 링크 -->
                     <a href="#" class="block w-full bg-[#FAE100] text-black font-bold py-4 rounded-xl text-center hover:bg-[#ebd300] transition">
                         💬 카카오톡 채팅 상담
                     </a>
@@ -472,7 +476,7 @@
             else el.classList.add('hidden');
         }
 
-        // Updated Settlement Toggle Logic
+        // --- FIXED: Updated Settlement Toggle Logic ---
         function toggleSettlement(type) {
             const prop = document.getElementById('propDamage').checked;
             const human = document.getElementById('humanInjury').checked;
@@ -496,7 +500,7 @@
             }
         }
 
-        // Modified Toggle Aggravating for Simple vs Critical
+        // --- FIXED: Modified Toggle Aggravating ---
         function toggleAggravating(type) {
             const simple = document.getElementById('simple');
             const aggravators = document.querySelectorAll('.aggravating');
@@ -514,7 +518,7 @@
                 if (anyChecked) {
                     simple.checked = false;
                 }
-                // Note: toggleSettlement() handles the individual boxes
+                // Call explicit toggleSettlement logic just in case user clicked via 'agg' group logic (optional but safe)
             }
         }
 
@@ -603,7 +607,7 @@
             const refusal = document.getElementById('refusal').checked;
             const hitrun = document.getElementById('hitrun').checked;
             
-            // Settlement Logic (Specific)
+            // Settlement
             let isSettlementBad = false;
             
             if(propDamage) {
@@ -615,30 +619,27 @@
                 if(hSet && hSet.value === 'impossible') isSettlementBad = true;
             }
 
-            // Calculation Logic
+            // Calculation
             let type = 'L1';
             
-            // Critical Risk Conditions
+            // Critical
             if (hitrun || refusal || isSettlementBad || 
                 prevPenalty === 'prison' || prevPenalty === 'suspended' || 
                 otherRecordVal === 'prison' || otherRecordVal === 'suspended') {
                 type = 'L3';
             } 
-            // High Risk Conditions
+            // High Risk
             else if (humanInjury || history >= 2 || bac >= 0.2 || 
                      prevPenalty === 'fine' || otherRecordVal === 'fine') {
                 type = 'L2';
             } 
-            // Moderate Risk Conditions
+            // Moderate Risk
             else if (propDamage || history === 1 || bac >= 0.08) {
                 type = (type === 'L3') ? 'L3' : 'L2'; 
             } 
             else {
                 type = 'L1';
             }
-
-            // Distance Mitigation
-            if(distance === 'short' && type === 'L2') { /* Visual mitigation logic can be added */ }
 
             // 3. Update UI
             const d = DATA[type];
@@ -647,7 +648,6 @@
             document.getElementById('resultSim').innerText = d.sim;
             document.getElementById('resultWorst').innerText = d.worst;
             document.getElementById('resultAdmin').innerText = d.worstSub;
-            document.getElementById('resultBest').innerText = d.best;
 
             // Strategy Injection
             const strategyContainer = document.getElementById('strategySteps');

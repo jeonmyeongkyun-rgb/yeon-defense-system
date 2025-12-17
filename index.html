@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- ▼▼▼ [필수] 카카오톡/링크 공유 미리보기 설정 ▼▼▼ -->
+    <!-- Open Graph Setting -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="법무법인 여온 | 음주운전 처벌 수위 정밀 진단">
     <meta property="og:description" content="판사는 당신의 눈물이 아닌 기록을 봅니다. 3,000건 판례 데이터 기반, 내 사건 처벌 수위 즉시 확인하기.">
-    <!-- 썸네일 이미지 (실제 변호사님 사진이나 로고 이미지 주소로 변경해주세요) -->
     <meta property="og:image" content="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
-    <!-- 실제 배포된 사이트 도메인 (예: https://yeonlaw.com) -->
     <meta property="og:url" content="https://yeonlaw.netlify.app"> 
-    <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ -->
     
     <title>법무법인 여온 | 음주운전 구속 방어 전담</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -247,7 +244,7 @@
                         </div>
                     </div>
 
-                    <!-- 5. Aggravating Factors (FIXED) -->
+                    <!-- 5. Aggravating Factors -->
                     <div class="bg-red-500/5 p-6 rounded-2xl border border-red-500/10">
                          <label class="text-xs font-bold text-alertRed mb-4 block uppercase tracking-widest flex items-center gap-2">
                             <span class="text-base">⚠️</span> 5. 가중 처벌 요소 (매우 중요)
@@ -354,7 +351,8 @@
             <div class="text-center mb-12 animate-fade-in-up">
                 <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] mb-4">ANALYSIS COMPLETE</p>
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-2" id="resultTitle">단순 음주 적발 (면허정지 수치)</h2>
-                <p class="text-sm font-mono text-gray-500" id="resultCode">CODE: DUI-L1-SIMPLE</p>
+                <!-- Disclaimer Added, Code Removed -->
+                <p class="text-xs text-gray-500 mt-2 font-light">* 결과는 부정확할 수 있으며, 개인의 구체적인 상황에 따라 달라질 수 있습니다.</p>
             </div>
 
             <!-- Result Cards Grid -->
@@ -420,7 +418,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fade-in-up" style="animation-delay: 0.6s;">
                 <div class="space-y-3">
                     <a href="tel:1588-0000" class="block w-full bg-white text-black font-bold py-4 rounded-xl text-center hover:bg-gray-200 transition">
-                        📞 무료 전화 상담 (대기 발생)
+                        📞 실장 전화 상담 (대기 발생)
                     </a>
                     <!-- 카카오톡 링크 -->
                     <a href="#" class="block w-full bg-[#FAE100] text-black font-bold py-4 rounded-xl text-center hover:bg-[#ebd300] transition">
@@ -476,7 +474,6 @@
             else el.classList.add('hidden');
         }
 
-        // --- FIXED: Updated Settlement Toggle Logic ---
         function toggleSettlement(type) {
             const prop = document.getElementById('propDamage').checked;
             const human = document.getElementById('humanInjury').checked;
@@ -500,14 +497,11 @@
             }
         }
 
-        // --- FIXED: Modified Toggle Aggravating ---
         function toggleAggravating(type) {
             const simple = document.getElementById('simple');
             const aggravators = document.querySelectorAll('.aggravating');
-            
             if (type === 'simple') {
                 if (simple.checked) {
-                    // Reset all aggravators & hide boxes
                     aggravators.forEach(cb => cb.checked = false);
                     document.getElementById('propSettlementBox').classList.add('hidden');
                     document.getElementById('humanSettlementBox').classList.add('hidden');
@@ -518,7 +512,8 @@
                 if (anyChecked) {
                     simple.checked = false;
                 }
-                // Call explicit toggleSettlement logic just in case user clicked via 'agg' group logic (optional but safe)
+                toggleSettlement('prop');
+                toggleSettlement('human');
             }
         }
 
@@ -619,7 +614,7 @@
                 if(hSet && hSet.value === 'impossible') isSettlementBad = true;
             }
 
-            // Calculation
+            // Calculation Logic
             let type = 'L1';
             
             // Critical
@@ -641,10 +636,13 @@
                 type = 'L1';
             }
 
+            // Distance Mitigation
+            if(distance === 'short' && type === 'L2') { /* Visual mitigation logic can be added */ }
+
             // 3. Update UI
             const d = DATA[type];
             document.getElementById('resultTitle').innerText = d.title;
-            document.getElementById('resultCode').innerText = d.code;
+            // Removed: document.getElementById('resultCode').innerText = d.code; // CODE display removed
             document.getElementById('resultSim').innerText = d.sim;
             document.getElementById('resultWorst').innerText = d.worst;
             document.getElementById('resultAdmin').innerText = d.worstSub;
